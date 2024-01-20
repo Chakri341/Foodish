@@ -22,7 +22,7 @@ const Body = () => {
     const json = await data.json();
 
     // Optional Chaining
-    // console.log(json);
+    console.log(json);
 
     setListOfRestraunt(
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
