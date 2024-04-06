@@ -1,20 +1,20 @@
 import { useDispatch } from "react-redux";
 import { addItem } from "../utils/cartSlice";
-import { CDN_URL } from "../utils/constants";
+import { CDN_ITEM_URL } from "../utils/constants";
 
-const ItemList = ({ items, dummy }) => {
+const ItemList = ({ items }) => {
   const dispatch = useDispatch();
 
+  console.log(items);
+
   const handleAddItem = (item) => {
-    // Dispatch an action
     dispatch(addItem(item));
   };
 
   return (
     <div>
-      {items.map((item) => (
+      {items?.map((item) => (
         <div
-          data-testid="foodItems"
           key={item.card.info.id}
           className="p-2 m-2 border-gray-200 border-b-2 text-left flex justify-between"
         >
@@ -30,16 +30,24 @@ const ItemList = ({ items, dummy }) => {
             </div>
             <p className="text-xs">{item.card.info.description}</p>
           </div>
-          <div className="w-3/12 p-4">
-            <div className="absolute">
+          <div className="w-3/12 p-4 relative">
+            <div className="absolute bottom-0">
               <button
-                className="p-2 mx-16 rounded-lg bg-black text-white shadow-lg ml-10  mt-16"
+                className="p-2 mx-16 w-1/2 rounded-lg bg-black text-white shadow-lg ml-10  mt-16   "
                 onClick={() => handleAddItem(item)}
               >
-                Add 
+                Add
               </button>
             </div>
-            <img src={CDN_URL + item.card.info.imageId} className="w-full" alt="card_info"/>
+            <div>
+              {item.card.info.imageId && (
+                <img
+                  src={CDN_ITEM_URL + item.card.info.imageId}
+                  className="w-full rounded-lg"
+                  alt="card_info"
+                />
+              )}
+            </div>
           </div>
         </div>
       ))}

@@ -9,7 +9,6 @@ const Body = () => {
   // Local State Variable - Super powerful variable
   const [listOfRestaurants, setListOfRestraunt] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
-
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
@@ -22,7 +21,7 @@ const Body = () => {
     const json = await data.json();
 
     // Optional Chaining
-    console.log(json);
+    // console.log(json);
 
     setListOfRestraunt(
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
@@ -51,8 +50,8 @@ const Body = () => {
 
   if (onlineStatus === false)
     return (
-      <h1 className="font-bold">
-        Looks like you're offline!! Please check your internet connection;
+      <h1 className="font-bold text-center my-12">
+        Looks like you're offline!! Please check your internet connection
       </h1>
     );
 
@@ -75,14 +74,9 @@ const Body = () => {
           <button
             className="px-4 py-2 bg-green-100 m-4 rounded-lg"
             onClick={() => {
-              // Filter the restraunt cards and update the UI
-              // searchText
-              // console.log(searchText);
-
               const filteredRestaurant = listOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
-
               setFilteredRestaurant(filteredRestaurant);
             }}
           >
